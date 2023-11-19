@@ -1,16 +1,18 @@
 require("dotenv").config();
 const express = require("express");
-const { Configuration, OpenAIApi } = require("openai");
+const OpenAIApi = require("openai");
 
 const app = express();
 app.use(express.json());
 
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
 
-const port = process.env.PORT || 5000;
+console.log(process.env.OPENAI_API_KEY);
+
+const openai = new OpenAIApi({
+  api_key: process.env.OPENAI_API_KEY,
+});
+
+const port = process.env.PORT || 1212;
 
 app.post("/ask", async (req, res) => {
   const prompt = req.body.prompt;
